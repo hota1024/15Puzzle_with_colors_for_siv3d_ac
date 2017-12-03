@@ -1,14 +1,17 @@
-﻿
-# include <Siv3D.hpp>
+﻿#include <Siv3D.hpp>
+#include "MaterialPalette.h"
+#include "Board.h"
 
-void Main()
-{
-	const Font font(30);
+void Main() {
+
+	if (!FontManager::Register(L"Roboto-Regular.ttf")) return;
+
+	Board board;
 
 	while (System::Update())
 	{
-		font(L"ようこそ、Siv3D の世界へ！").draw();
-
-		Circle(Mouse::Pos(), 50).draw({ 255, 0, 0, 127 });
+		ClearPrint();
+		board.update();
+		board.draw();
 	}
 }
